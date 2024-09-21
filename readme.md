@@ -59,9 +59,7 @@ To run the script automatically on login:
 4. Paste the following script, adjusting the paths and API key as necessary:
 
 ```bash
-PATH=<copy your path>
-
-cd /Users/yourusername/Projects/macos-gen-ai-wallpaper-on-login
+cd <path to project>/macos-gen-ai-wallpaper-on-login
 
 ./macos-gen-ai-wallpaper.sh "YOUR_API_KEY" "Your prompt here" ./past-generations
 ```
