@@ -1,182 +1,96 @@
-macOS AI-Generated Wallpaper Changer
-This script generates AI-generated wallpapers using OpenAI's DALL·E 3 model and sets them on your macOS desktop. It supports multiple displays and can be configured to run at login, changing your wallpapers automatically.
+# macOS AI Wallpaper Generator
 
-Features
-Generates unique wallpapers using AI.
-Supports multiple displays.
-Saves wallpapers for future use.
-Optionally archives all generated wallpapers.
-Easy setup with setup.sh.
-Prerequisites
-macOS 10.14.4 or later.
-An OpenAI API key with access to the image generation endpoints.
-Node.js and npm (installed via setup.sh if not present).
-wallpaper-cli (installed via setup.sh).
-Installation
-Clone the Repository
+This script generates AI-powered wallpapers for your macOS system using OpenAI's DALL-E 3 model. It automatically sets the generated images as your desktop background on login.
 
-bash
-Copy code
-git clone https://github.com/yourusername/macos-ai-wallpaper.git
-cd macos-ai-wallpaper
-Run the Setup Script
+## Prerequisites
 
-The setup.sh script will check for npm and install wallpaper-cli.
+- macOS operating system
+- Homebrew package manager
+- Node.js and npm
+- OpenAI API key
 
-bash
-Copy code
-chmod +x setup.sh
-./setup.sh
-If npm is not installed, the script attempts to install Node.js and npm.
-Installs wallpaper-cli globally using npm.
-Usage
+## Installation
 
-1. Prepare Your OpenAI API Key
-   Obtain your OpenAI API key from the OpenAI Dashboard.
+1. Clone this repository:
 
-2. Run the Wallpaper Script
-   The script generates wallpapers for the next time it's run. On the first run, it won't change your wallpaper immediately but will generate images to be used the next time.
+   ```
+   git clone https://github.com/yourusername/macos-gen-ai-wallpaper-on-login.git
+   cd macos-gen-ai-wallpaper-on-login
+   ```
 
-bash
-Copy code
-chmod +x macos-gen-ai-wallpaper.sh
-./macos-gen-ai-wallpaper.sh "<YOUR_API_KEY>" "<YOUR_PROMPT>" [SAVE_DIRECTORY]
-YOUR_API_KEY: Your OpenAI API key.
-YOUR_PROMPT: The prompt describing the desired image.
-SAVE_DIRECTORY (optional): Directory to save all generated wallpapers.
-Example:
+2. Run the setup script to install dependencies:
 
-bash
-Copy code
-./macos-gen-ai-wallpaper.sh "sk-xxxxxxxxxxxxxxxx" "A breathtaking view of a futuristic city at sunset" ./past-generations 3. Create a Shortcut to Run the Script at Login
-To have the script run automatically at login, create a shortcut or use a launch agent.
+   ```
+   ./setup.sh
+   ```
 
-Using Automator:
-Open Automator and create a new Application.
+   This script will install the required dependencies, including the `wallpaper-cli` tool.
 
-Add a Run Shell Script Action:
+3. Install the `wallpaper-cli` tool globally:
+   ```
+   npm install --global wallpaper-cli
+   ```
 
-Search for "Run Shell Script" in the actions library.
-Drag it into the workflow area.
-Configure the Shell Script:
+## Configuration
 
-Set the shell to /bin/bash.
-Set Pass input to "As arguments".
-Insert the Following Script:
+1. Open the `macos-gen-ai-wallpaper.sh` script and replace `YOUR_API_KEY` with your actual OpenAI API key.
 
-Replace placeholders with your actual paths and API key.
+2. Modify the prompt in the script to customize the type of images you want to generate.
 
-bash
-Copy code
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+## Usage
 
-cd /path/to/macos-ai-wallpaper
+### First Run
 
-./macos-gen-ai-wallpaper.sh "<YOUR_API_KEY>" "<YOUR_PROMPT>" [SAVE_DIRECTORY]
-Example:
+Run the script manually the first time to generate the initial set of wallpapers:
 
-bash
-Copy code
-export PATH=/Users/yourusername/.nvm/versions/node/v14.17.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+```
+./macos-gen-ai-wallpaper.sh "YOUR_API_KEY" "Your prompt here" ./past-generations
+```
 
-cd /Users/yourusername/Projects/macos-ai-wallpaper
+This will create a queue of images for the next run.
 
-./macos-gen-ai-wallpaper.sh "sk-xxxxxxxxxxxxxxxx" "A breathtaking view of an interesting place in the world. Be creative and make it look realistic. It can be anything, surprise me." ./past-generations
-Save the Application:
+### Automatic Run on Login
 
-Save it to a location like /Applications.
-Add to Login Items:
+To run the script automatically on login:
 
-Go to System Preferences > Users & Groups > Login Items.
-Click the "+" button and add your Automator application.
-Using Launch Agents:
-Alternatively, create a launch agent to run the script at login.
+1. Open "Automator" on your Mac.
+2. Create a new "Application" or "Workflow".
+3. Add a "Run Shell Script" action.
+4. Paste the following script, adjusting the paths and API key as necessary:
 
-Create a Launch Agent File:
+```bash
+PATH=<copy your path>
 
-bash
-Copy code
-nano ~/Library/LaunchAgents/com.username.wallpaperchanger.plist
-Insert the Following XML Configuration:
+cd /Users/yourusername/Projects/macos-gen-ai-wallpaper-on-login
 
-xml
-Copy code
+./macos-gen-ai-wallpaper.sh "YOUR_API_KEY" "Your prompt here" ./past-generations
+```
 
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-  <dict>
-    <key>Label</key>
-    <string>com.username.wallpaperchanger</string>
-    <key>ProgramArguments</key>
-    <array>
-      <string>/bin/bash</string>
-      <string>/path/to/macos-ai-wallpaper/macos-gen-ai-wallpaper.sh</string>
-      <string><YOUR_API_KEY></string>
-      <string><YOUR_PROMPT></string>
-      <string>/path/to/past-generations</string>
-    </array>
-    <key>RunAtLoad</key>
-    <true/>
-    <key>StandardOutPath</key>
-    <string>/tmp/wallpaperchanger.log</string>
-    <key>StandardErrorPath</key>
-    <string>/tmp/wallpaperchanger.err</string>
-  </dict>
-</plist>
-Replace placeholders with your actual paths and API key.
+4. Save the Automator application.
+5. Go to System Preferences > Users & Groups > Login Items.
+6. Add the Automator application you just created to the login items.
 
-Load the Launch Agent:
+Now, the script will run automatically each time you log in, setting a new AI-generated wallpaper.
 
-bash
-Copy code
-launchctl load ~/Library/LaunchAgents/com.username.wallpaperchanger.plist 4. Notes on Script Behavior
-First Run: The script generates wallpapers for the next run. It won't change your current wallpapers on the first execution.
-Subsequent Runs: On following runs, the script sets wallpapers from the previously generated images and generates new ones for the next time.
-Save Directory: If you specify a SAVE_DIRECTORY, all generated images are saved there with timestamps.
-Script Details
-macos-gen-ai-wallpaper.sh
-Parameters:
-<API_KEY>: Your OpenAI API key.
-<PROMPT>: Prompt for the AI image generation.
-[SAVE_DIRECTORY] (optional): Directory to save all generated wallpapers.
-Functionality:
-Sets current wallpapers from previously queued images.
-Generates new AI wallpapers using the provided prompt.
-Saves new wallpapers for use in the next run.
-Optionally saves copies of all generated images.
-setup.sh
-Checks if npm is installed.
-Installs Node.js and npm if necessary.
-Installs wallpaper-cli globally.
-Troubleshooting
-Wallpapers Not Changing:
-Ensure the script has execute permissions: chmod +x macos-gen-ai-wallpaper.sh.
-Verify that wallpaper-cli is installed and accessible.
-Check that the images exist in the queued-images directory.
-Script Not Running at Login:
-Confirm that the Automator application or launch agent is properly configured.
-Ensure the script paths and API key are correct.
-API Errors:
-Check the API response output in the terminal.
-Verify that your API key is valid and has the necessary permissions.
-Dependencies
-Node.js and npm: Required to install wallpaper-cli.
+## How It Works
 
-wallpaper-cli: A command-line tool to get or set the desktop wallpaper.
+1. The script checks for existing wallpapers in the queue.
+2. If wallpapers exist, it sets them as the current desktop background.
+3. It then generates new wallpapers for the next run, storing them in the queue.
+4. On the next login, the cycle repeats, ensuring you always have a fresh wallpaper.
 
-Install via:
+## Troubleshooting
 
-bash
-Copy code
-npm install --global wallpaper-cli
-Security Considerations
-API Key Safety: Keep your OpenAI API key secure. Do not share it publicly or commit it to version control.
-Permissions: The script may require permissions to read/write files and change system settings.
-License
-This project is licensed under the MIT License.
+If you encounter issues with wallpapers not setting correctly:
 
-Acknowledgments
-OpenAI: For providing the DALL·E 3 model for image generation.
-wallpaper-cli: For enabling programmatic wallpaper changes on macOS.
+1. Check the console for error messages.
+2. Ensure the script has necessary permissions.
+3. Verify your macOS version is compatible with the AppleScript commands used.
+
+## Contributing
+
+Feel free to fork this repository and submit pull requests for any improvements or bug fixes.
+
+## License
+
+[MIT License](LICENSE)
