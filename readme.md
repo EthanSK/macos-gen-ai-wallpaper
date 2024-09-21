@@ -70,6 +70,8 @@ cd <path to project>/macos-gen-ai-wallpaper-on-login
 
 Now, the script will run automatically each time you log in, setting a new AI-generated wallpaper.
 
+Or actually just use shortcuts.app and run the script, and use shortery to run it when u log in that what i do. Make sure you set the path variable, just reexport it in the script in shortcuts.app itsweird.
+
 ## How It Works
 
 1. The script checks for existing wallpapers in the queue.
