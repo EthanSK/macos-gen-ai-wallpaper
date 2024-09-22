@@ -31,7 +31,7 @@ This script generates AI wallpapers for your macOS system using OpenAI's DALL-E 
 Run the script manually the first time to generate the initial set of wallpapers:
 
 ```
-./macos-gen-ai-wallpaper.sh "<YOUR_API_KEY>" "<Your prompt here>" <past-generations-dir-to-save(optional)>
+./macos-gen-ai-wallpaper.sh "<YOUR_API_KEY>" "a breathtaking view of an interesting part or thing in the world that will really just wow me emotionally. Be creative and make it look realistic. it can be literally anything surprise me. i like technology so maybe incorporate that in too." <past-generations-dir-to-save(optional)>
 ```
 
 This will create a queue of images for the next run.
