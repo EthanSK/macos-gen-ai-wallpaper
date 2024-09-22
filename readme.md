@@ -5,8 +5,8 @@ This script generates AI wallpapers for your macOS system using OpenAI's DALL-E 
 ## Prerequisites
 
 - macOS operating system
-- Homebrew package manager
 - Node.js and npm
+- Homebrew package manager (if you don't have npm, brew will install npm, or actually just install npm yourself up to u)
 - OpenAI API key
 
 ## Installation
