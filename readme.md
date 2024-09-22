@@ -38,7 +38,7 @@ This will create a queue of images for the next run.
 
 ### Automatic Run on Login
 
-Create a macOS shortcut that runs this script
+Create a macOS shortcut (in shortcuts.app) that runs this script
 
 ```bash
 
