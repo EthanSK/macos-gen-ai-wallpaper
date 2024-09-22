@@ -14,8 +14,8 @@ This script generates AI wallpapers for your macOS system using OpenAI's DALL-E 
 1. Clone this repository:
 
    ```
-   git clone https://github.com/yourusername/macos-gen-ai-wallpaper-on-login.git
-   cd macos-gen-ai-wallpaper-on-login
+   git clone https://github.com/yourusername/macos-gen-ai-wallpaper.git
+   cd macos-gen-ai-wallpaper
    ```
 
 2. Run the setup script to install dependencies:
@@ -49,6 +49,6 @@ cd <path to project>/macos-gen-ai-wallpaper-on-login
 ./macos-gen-ai-wallpaper.sh "<YOUR_API_KEY>" "<Your prompt here>" <past-generations-dir-to-save(optional)>
 ```
 
-Get [Shortery](https://apps.apple.com/us/app/shortery/id1594183810?mt=12) and set it to run the shortcut on login
+Get [Shortery](https://apps.apple.com/us/app/shortery/id1594183810?mt=12) (it's free) and set it to run the shortcut on login
 
 Now, the script will run automatically each time you log in, setting a new AI-generated wallpaper straight away (from the queue) and generating new images for the next run
