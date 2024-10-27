@@ -1,3 +1,5 @@
+UPDATE: I have made this project into a proper app: https://www.aiwallpapergenerator.ai/
+
 # macOS AI Wallpaper Generator
 
 This script generates AI wallpapers for your macOS system using OpenAI's DALL-E 3 model. It automatically sets the generated images as your desktop background on login, and generates some for the next time (works for multiple displays)
